@@ -4,7 +4,14 @@ function build {
     cargo build --release --target wasm32-unknown-unknown \
     && cp ./target/wasm32-unknown-unknown/release/typst_railroad.wasm ./typst-package/
 }
-
+function pkg {
+    build
+    version="$(cargo  metadata --no-deps --format-version 1|jq -r .packages[0].version)"
+    rm -r "./package/"
+    mkdir -p "./package/typst-railroad/"
+    cp -r ./typst-package/ "./package/typst-railroad/$version"
+    cp ./README.md  "./package/typst-railroad/$version/"
+}
 
 function help {
     echo "$0 <task> <args>"
