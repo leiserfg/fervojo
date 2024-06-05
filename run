@@ -10,7 +10,7 @@ function pkg {
     rm -r "./package/"
     mkdir -p "./package/typst-railroad/"
     cp -r ./typst-package/ "./package/typst-railroad/$version"
-    cp ./README.md  "./package/typst-railroad/$version/"
+    cp ./README.md ./LICENSE  "./package/typst-railroad/$version/"
 }
 
 function help {
