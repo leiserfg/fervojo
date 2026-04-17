@@ -1,7 +1,7 @@
 #let rr-wasm = plugin("./typst_railroad.wasm")
 
 #let _as_bytes(input) = {
-    let t = type(input)
+    let t = str(type(input))
     if t == "bytes" {
         return input
     }
@@ -21,7 +21,7 @@
     css: rr-wasm.default_css(),
     ..args
 ) = {
-    image.decode(rr-wasm.railroad(_as_bytes(railroad), _as_bytes(css)), format: "svg")
+    image(rr-wasm.railroad(_as_bytes(railroad), _as_bytes(css)), format: "svg")
 }
 
 
